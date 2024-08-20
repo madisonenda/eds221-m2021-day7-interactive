@@ -1,0 +1,40 @@
+---
+title: "EDS-221-Day7a"
+author: "Maddy Enda"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+#Adding packages
+```{r}
+
+library(tidyverse)
+library(palmerpenguins)
+library(lubridate)
+
+View(penguins)
+```
+
+
+
+#Warm Up Data Wrangling 1
+```{r}
+
+penguins_data <- penguins %>%
+  filter( island == c("Biscoe", "Dream")) %>%
+  mutate(year= NULL, sex = NULL) %>%
+  mutate( body_mass_kg = body_mass_g / 1000) %>%
+  rename( location = island )
+``` 
+
+#Warm Up Data Wrangling 2
+```{r}
+adelie_penguins <- penguins %>%
+  filter(species == "Adelie" & !is.na(flipper_length_mm)) %>%
+  group_by(sex) %>%
+  summarize( mean_flipper= mean(flipper_length_mm), std_flipper = sd(flipper_length_mm),count= n())
+  
+```
+
